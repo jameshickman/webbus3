@@ -23,7 +23,8 @@ Example of minimal mark-up for a Web Bus instance with the optional configuratio
 
 The logic instantiated for any defined instance must extend the ComponentFactory class defined in lib/component.js
 Example “Hello World” controller class:
-```class HelloWorld extends ComponentFactory {
+```
+class HelloWorld extends ComponentFactory {
     #el_container = null;
     _setup() {
         this.#el_container = this.el.querySelector('.content');
