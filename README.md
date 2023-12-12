@@ -64,7 +64,7 @@ The fire_event() method returns an object with properties keyed to the IDs of th
 
 ## Instance life-cycle and hydration.
 
-Each component implements a _setup() and _start() method. The _setup() method is called when the Web Bus system loads. The _start() is called when the instance becomes visible to the user or receives an event.
+Each component factory Class implements a _setup() and _start() method. The _setup() method is called when the Web Bus system loads. The _start() is called when the instance becomes visible to the user or receives an event.
 
 The _start() event exists for complex setup that should only be performed when the user can see to. This minimizes the time to interactivity of the overall application by deferring the _start() until the instance is actually needed to interact with the user.
 
