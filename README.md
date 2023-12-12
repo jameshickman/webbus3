@@ -13,7 +13,14 @@ essential add-ons.
 Web Bus scans the page for DOM container elements that are marked with the class name "webbus_container".
 A Web Bus container must have an ID and a data property named "logic". The data-logic property must reference a factory class passed to the Web Bus constructor.
 Example of minimal mark-up for a Web Bus instance with the optional configuration object:
-```<div class="webbus_container" id="hello_world" data-logic="hello"><config style="display: none;">{'var': '123'}</config><div class="content"></div></div>```
+
+```
+<div class="webbus_container" id="hello_world" data-logic="hello">
+    <config style="display: none;">{'var': '123'}</config>
+    <div class="content"></div>
+</div>
+```
+
 The logic instantiated for any defined instance must extend the ComponentFactory class defined in lib/component.js
 Example “Hello World” controller class:
 ```class HelloWorld extends ComponentFactory {
