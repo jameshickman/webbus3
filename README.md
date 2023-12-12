@@ -40,7 +40,7 @@ class HelloWorld extends ComponentFactory {
     }
 }
 ```
-The Web BUs system needs to be started after the HTML code or an on-load page event handler. This example includes the optional page property with page scope variables.
+The Web Bus system needs to be started after the HTML code or an on-load page event handler. This example includes the optional page property with page scope variables.
 ```
 new WebBus(
     {
