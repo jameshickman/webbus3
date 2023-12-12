@@ -1,5 +1,5 @@
 {
-  "name": "web_bus_36",
+  "name": "web_bus_es6",
   "version": "3.0.0",
   "description": "Lightweight on page component creation and event driven communication framework with no external dependencies.",
   "main": "lib/webus.js",
