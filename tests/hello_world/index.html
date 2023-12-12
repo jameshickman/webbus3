@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello World ES6</title>
+        <script src="../../lib/webbus.js"></script>
+        <script src="../../lib/component.js"></script>
+        <script src="js/hello.js"></script>
+    </head>
+    <body>
+        <div class="webbus_container" id="hello_world" data-logic="hello">
+            <config style="display: none;">
+            {
+                'var': '123'
+            }
+            </config>
+
+            <div class="content"></div>
+        </div>
+    </body>
+    <script>
+        const wb = new WebBus(
+            {
+                'page': {
+                    'pagevar': 98765
+                },
+                'factories': {
+                    'hello': HelloWorld
+                }
+            }
+        );
+    </script>
+</html>

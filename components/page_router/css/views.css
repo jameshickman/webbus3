@@ -1,0 +1,7 @@
+.views__view__hidden {
+    display: none;
+}
+
+.views__view__visible {
+    display: block;
+}

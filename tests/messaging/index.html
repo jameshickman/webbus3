@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Event Passing Tests</title>
+<script src="../../lib/webbus.js"></script>
+<script src="../../lib/component.js"></script>
+<script src="../_components/sender.js"></script>
+<script src="../_components/listener.js"></script>
+<style type="text/css">
+.widget {
+	border: 1px solid red;
+	padding: 11px;
+}
+</style>
+</head>
+<body>
+	<div id="sender" class="webbus_container" data-logic="test_sender">
+		<h1 class="__placeholder__">Static placeholder</h1>
+		<input type="button" value="Send to All" class="button_send_all" />
+		<input type="button" value="Send to First" class="button_send_first" />
+		<input type="button" value="Send to Second" class="button_send_second" />
+	</div>
+	<div style="height: 1000px;"></div>
+	<h1>First Container:</h1>
+	<div id="container-1">
+		<div id="listener-1" class="webbus_container widget" data-logic="test_listener">
+			<h1 class="__placeholder__">Static placeholder</h1>
+		</div>
+	</div>
+	<h1>Second Container:</h1>
+	<div id="container-2">
+		<div id="listener-2" class="webbus_container widget" data-logic="test_listener">
+			<h1 class="__placeholder__">Static placeholder</h1>
+		</div>
+		<div id="listener-3" class="webbus_container widget" data-logic="test_listener">
+			<h1 class="__placeholder__">Static placeholder</h1>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" >
+window.addEventListener('load', () => 
+{
+	new WebBus(
+		{
+			"factories": {
+				"test_sender": EventSendController,
+				"test_listener": EventListenerController
+			}
+		}
+	);
+}
+);
+</script>
+</html>

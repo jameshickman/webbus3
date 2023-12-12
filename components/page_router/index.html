@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>View router test</title>
+        <script src="../../lib/persist.js"></script>
+        <script src="../../lib/component.js"></script>
+        <script src="../../lib/webbus.js"></script>
+        <script src="js/navigation.js"></script>
+        <script src="js/router.js"></script>
+        <link rel="stylesheet" href="css/navigation.css">
+        <link rel="stylesheet" href="css/views.css">
+    </head>
+    <body>
+        <h1>View router test</h1>
+        <div id="navigation" class="webbus_container" data-logic="navigation">
+            <a href="#page1">Page 1</a> |
+            <a href="#page2">Page 2</a> |
+            <a href="#page3">Page 3</a>
+        </div>
+        <div id="views" class="webbus_container" data-logic="views">
+            <div data-name="page1">
+                <h2>Test View One</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dapibus sem vitae condimentum iaculis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin consequat pretium sapien a accumsan. In commodo elit ut ullamcorper porttitor. Vivamus semper mauris eget nisl lacinia, a rutrum justo venenatis. Nulla porta fringilla malesuada. Maecenas at turpis diam. Aenean sodales lectus at nunc elementum feugiat. Duis blandit sapien metus, lacinia facilisis libero eleifend vulputate.</p>
+            </div>
+            <div data-name="page2">
+                <h2>Test View Two</h2>
+                <p>Mauris maximus ultrices facilisis. Aenean accumsan, mauris vel fringilla cursus, mauris sem iaculis enim, at fermentum lorem nulla vel quam. Nulla faucibus, justo aliquet rhoncus accumsan, tortor nisl pretium tortor, id facilisis velit velit eu libero. Nullam in dui erat. Duis convallis ex libero, dapibus facilisis ex vulputate ac. Nunc ut sapien nulla. Proin vestibulum scelerisque sodales. Proin efficitur nibh eget libero maximus, sit amet gravida augue vulputate.</p>
+            </div>
+            <div data-name="page3">
+                <h2>Test View Three</h2>
+                <p>Vivamus suscipit condimentum sem, quis rhoncus arcu venenatis vitae. Etiam ornare hendrerit lectus ut volutpat. Maecenas tempus suscipit libero, vitae ullamcorper ipsum consectetur eget. Curabitur sem tortor, aliquet in cursus ac, dapibus ac neque. Integer at nisi sodales arcu dignissim lacinia sed eu tellus. Quisque convallis tristique metus et porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+            </div>
+        </div>
+    </body>
+    <script>
+        const wb = new WebBus({
+            "factories": {
+                'navigation': RouterNavigationLinks,
+                'views': WebBusViewRouter
+            }
+        });
+    </script>
+</html>
