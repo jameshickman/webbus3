@@ -54,6 +54,8 @@ new WebBus(
 );
 ```
 
+## Event passing system, PubSub
+
 Instances communicate via the provided method this.web_bus.fire_event(“target_event”, data_Object)
 
 Any public Controller method with a name starting with “event_” becomes a subscriber to messages sent by fire_event(). Optionally the string for the name of the event can be a path referencing the IDs on the parent DOM containers of a target instance. For example your can fire an event to “test1/test” that will only be received by an instance inside a DOM container with the ID of “test1”.
