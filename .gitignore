@@ -1,4 +1,6 @@
 .env
+node_modules
+nightwatch/nightwatch/
 node_modules/
 nightwatch/.npm
 nightwatch/logs/
