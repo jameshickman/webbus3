@@ -1,0 +1,22 @@
+body {
+    font-family: sans-serif;
+}
+
+.webbus__hide-section {
+    display: none;
+    /*
+    max-height: 0px !important;
+    overflow: hidden;
+    transition: max-height 2s;
+    */
+}
+
+.section {
+    /*
+    max-height: 100px;
+    transition: max-height 2s;
+    */
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid green;
+}

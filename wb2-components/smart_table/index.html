@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Smart Table Widget</title>
+        <link rel="stylesheet" href="css/widget.css" />
+        <script src="../../lib/webbus.js"></script>
+        <script src="js/smart_table.js"></script>
+
+    </head>
+    <body>
+        <h1>Test of Smart Table WebBus controller</h1>
+        <div class="webbus_container smart-table" id="smart-table-test" data-logic="smarttable">
+            <CONFIG style="display: none;">
+{
+    "save_event": "event_row_saved",
+    "labels": {
+        "edit": "Edit",
+        "delete": "Delete",
+        "confirm": "Are you sure you want to delete this row?",
+        "save": "Save",
+        "cancel": "Cancel"
+    },
+    "fields": {
+        "field3": {
+            "labels": {
+                "true": "Yes",
+                "false": "No"
+            }
+        },
+        "field5": {
+            "options": {
+                "1": "First",
+                "2": "Second",
+                "3": "Third"
+            }
+        }
+    }
+}
+            </CONFIG>
+            <table border="1" width="100%">
+                <thead>
+                    <tr>
+                        <th data-type="index" data-name="index">Row index</th>
+                        <th data-type="int" data-name="field1">Integer</th>
+                        <th data-type="float" data-name="field2">Floaing point</th>
+                        <th data-type="bool" data-name="field3">Boolean</th>
+                        <th data-type="text" data-name="field4">Text line</th>
+                        <th data-type="select" data-name="field5">Multi-select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>123</td>
+                        <td>3.14159</td>
+                        <td>Yes</td>
+                        <td>Some demonstration text</td>
+                        <td>Second</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>456</td>
+                        <td>1.41421356237</td>
+                        <td>No</td>
+                        <td>Some other text</td>
+                        <td>Third</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="webbus_container" id="add_button" data-logic="add_button">
+            <button id="add">Add a row</button>
+            <button id="get_data">Get table data</button>
+            <button id="populate">Set data in table</button>
+        </div>
+        <script>
+            function add_button(web_bus, name, el, params) {
+                this._setup = function(d) {
+                    el.querySelector("#add").addEventListener('click', function(e){
+                        web_bus.fire_event('event_new_row', []);
+                    });
+                    el.querySelector('#get_data').addEventListener('click', function(e) {
+                        const values = web_bus.fire_event('event_get_table_values', null);
+                        console.log(values);
+                    });
+                    el.querySelector('#populate').addEventListener('click', function(e){
+                        const table_data = [
+                            {
+                                'index': 1,
+                                'field1': 987,
+                                'field2': 1.3333333,
+                                'field3': true,
+                                'field4': 'Some text dynamically set',
+                                'field5': '1'
+                            },
+                            {
+                                'index': 2,
+                                'field1': 654,
+                                'field2': 2.1234,
+                                'field3': false,
+                                'field4': 'Other text',
+                                'field5': '2'
+                            }
+                        ];
+                        web_bus.fire_event('event_set_rows', table_data);
+                    });
+                };
+                this._start = function(d) {};
+            }
+
+            const wb = new WebBus({
+                'factories': {
+                    'add_button': add_button,
+                    'smarttable': webbus__smart_table_factory
+                }
+            });
+        </script>
+    </body>
+</html>
