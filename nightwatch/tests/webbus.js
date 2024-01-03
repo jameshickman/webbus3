@@ -3,12 +3,13 @@ module.exports = {
         browser
         .url('http://localhost:8080/tests/hello_world/')
         .waitForElementVisible('body', 1000)
-        .pause(10)
+        .pause(1)
     },
     'step two: verify configuration level variable': function(browser) {
-        browser.assert.containsText('#hello_world .content:nth-child(1)', "From setup method. Configuration value: 123");
+        // browser.debug();
+        browser.assert.textContains('#output_1', "From setup method. Configuration value: 123");
     },
     'step three: verify page level variable': function(browser) {
-        browser.assert.containsText('#hello_world .content:nth-child(2)', "From start method. Global page value: 98765");
+        browser.assert.containsText('#output_2', "From start method. Global page value: 98765");
     }
 }
