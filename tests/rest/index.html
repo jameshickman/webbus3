@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Event Passing Tests</title>
+<script src="../../lib/webbus.js"></script>
+<script src="../../lib/component.js"></script>
+<script src="../../lib/restclient.js"></script>
+<script src="js/client.js"></script>
+</head>
+<body>
+    <div class="webbus_container" id="rest-clinet" data-logic="rest_client">
+        <config style="display: none;">
+        {
+            'url': 'data.json'
+        }
+        </config>
+        <h1>Testing the REST API client, simple GET</h1>
+        <div class="result"></div>
+    </div>
+</body>
+<script type="text/javascript" >
+    window.addEventListener('load', () => {
+        new WebBus({
+            'factories': {
+                'rest_client': RESTclientController
+            }
+        });
+    });
+</script>
+</html>
