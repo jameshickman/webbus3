@@ -1,0 +1,121 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="../../lib/webbus.js"></script>
+        <script src="js/multi_watch.js"></script>
+        <script src="js/show_hide.js"></script>
+    </head>
+    <body>
+        <form id="main_form" onsubmit="return false;">
+            <h1>Dynamic form demonstration</h1>
+            <div
+                 class="webbus_container"
+                 id="select_test_source"
+                 data-logic="form_watch"
+                 data-params='{
+                                "event": "event_select_selected"
+                              }'
+                 >
+                <select name="text_select_1">
+                    <option value="0">First (hide)</option>
+                    <option value="1">Second (show)</option>
+                    <option value="2">Third (show)</option>
+                </select>
+            </div>
+            <div
+                 class="webbus_container section"
+                 id="select_test_target"
+                 data-logic="form_show_hide"
+                 data-params='{
+                                "event": "event_select_selected",
+                                "values": ["1", "2"]
+                              }'
+                >
+                <h2>Subform section</h2>
+                <div
+                     class="webbus_container"
+                     id="checkbox_source"
+                     data-logic="form_watch"
+                     data-params='{
+                        "event": "event_checkbox_checked"
+                     }'
+                    >
+                    <input type="checkbox" name="cb" id="cb-1" value="0"><label for="cb-1"> First</label><br />
+                    <input type="checkbox" name="cb" id="cb-2" value="1"><label for="cb-2"> Second</label><br />
+                    <input type="checkbox" name="cb" id="cb-3" value="2"><label for="cb-3"> Third with some radio buttons</label>
+                </div>
+                <div
+                     class="webbus_container section"
+                     id="first-checkbox-listener"
+                     data-logic="form_show_hide"
+                     data-params='{
+                                    "event": "event_checkbox_checked",
+                                    "values": ["1"]
+                                  }'
+                     >
+                    <h2>Second checkbox checked</h2>
+                </div>
+                <div
+                     class="webbus_container section"
+                     id="second-checkbox-listener"
+                     data-logic="form_show_hide"
+                     data-params='{
+                                    "event": "event_checkbox_checked",
+                                    "values": ["2"]
+                                  }'
+                     >
+                    <h2>Third checkbox checked</h2>
+                    <div
+                         class="webbus_container"
+                         id="radio_source"
+                         data-logic="form_watch"
+                         data-params='{
+                                        "event": "event_radio_selected"
+                                      }'
+                         >
+                        <input type="radio" name="rd" id="rd-0" value="1"><label for="rd-0"> First radio</label><br />
+                        <input type="radio" name="rd" id="rd-1" value="2"><label for="rd-1"> Second</label><br />
+                        <input type="radio" name="rd" id="rd-2" value="3"><label for="rd-2"> Third</label>
+                    </div>
+                    <div
+                         class="webbus_container section"
+                         id="third_radio_active"
+                         data-logic="form_show_hide"
+                         data-params='{
+                                        "event": "event_radio_selected",
+                                        "values": ["3"]
+                                      }'
+                         >
+                        <h2>Third radio button active</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="webbus_container" id="clear_form" data-logic="form_reset">
+                <button>Reset form</button>
+            </div>
+        </form>
+
+        <script>
+            function form_reset(web_bus, name, el, params) {
+                var form = document.getElementById("main_form");
+                this._setup = function(d) {
+                    el.querySelector("button").addEventListener('click', function(e) {
+                        form.reset();
+                        web_bus.fire_event('event_form_reset', {});
+                        return false;
+                    });
+                };
+                this._start = function(d) {};
+            }
+
+            const wb = new WebBus({
+                'factories': {
+                    'form_reset': form_reset,
+                    'form_watch': webbus__form_change_watch,
+                    'form_show_hide': webbus__form_show_hide_listener
+                }
+            });
+        </script>
+    </body>
+</html>
+command:gitlens.showGraph

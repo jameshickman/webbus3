@@ -1,0 +1,15 @@
+._smart-table__edit-row button {
+    cursor: pointer;
+}
+
+._smart-table__actions-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.smart-table table input[type=text],
+.smart-table table input[type=number],
+.smart-table table select {
+    width: 100%;
+    box-sizing: border-box;
+}
