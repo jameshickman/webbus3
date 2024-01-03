@@ -72,16 +72,22 @@
             <button id="add">Add a row</button>
             <button id="get_data">Get table data</button>
             <button id="populate">Set data in table</button>
+            <div class="output"></div>
         </div>
         <script>
             function add_button(web_bus, name, el, params) {
                 this._setup = function(d) {
+                    const el_output = el.querySelector(".output");
+
                     el.querySelector("#add").addEventListener('click', function(e){
                         web_bus.fire_event('event_new_row', []);
                     });
                     el.querySelector('#get_data').addEventListener('click', function(e) {
                         const values = web_bus.fire_event('event_get_table_values', null);
                         console.log(values);
+                        const el_output_item = document.createElement("p");
+                        el_output_item.innerText = JSON.stringify(values);
+                        el_output.appendChild(el_output_item);
                     });
                     el.querySelector('#populate').addEventListener('click', function(e){
                         const table_data = [
