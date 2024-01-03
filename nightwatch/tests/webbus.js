@@ -10,6 +10,6 @@ module.exports = {
         browser.assert.textContains('#output_1', "From setup method. Configuration value: 123");
     },
     'step three: verify page level variable': function(browser) {
-        browser.assert.containsText('#output_2', "From start method. Global page value: 98765");
+        browser.assert.textContains('#output_2', "From start method. Global page value: 98765");
     }
 }
