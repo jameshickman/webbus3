@@ -8,9 +8,13 @@ class EventListenerController extends ComponentFactory {
 	}
 
 	event_test = (s) => {
-		console.log("event_test on " + name +" called and passed: " + s);
+		console.log("event_test on " + this.nme +" called and passed: " + s);
 		var ne = document.createElement("div");
 		ne.innerHTML = s;
 		this.el.appendChild(ne);
+	}
+
+	event_respond_with_data = () => {
+		return "Instance: " + this.nme;
 	}
 }

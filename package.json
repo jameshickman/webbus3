@@ -22,5 +22,8 @@
   ],
   "author": "James Hickman <james@jameshickman.net>",
   "license": "LGPL-2.1",
-  "homepage": "https://bitbucket.org/"
+  "homepage": "https://bitbucket.org/",
+  "devDependencies": {
+    "chromedriver": "^120.0.1"
+  }
 }

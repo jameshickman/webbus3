@@ -1,0 +1,16 @@
+{
+    "name": "webbustest",
+    "version": "1.0.0",
+    "description": "NightwatchJS test for WebBus3",
+    "main": "index.js",
+    "scripts": {
+        "test": "nightwatch"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@nightwatch/mobile-helper": "^0.1.12",
+        "chromedriver": "^120.0.0",
+        "nightwatch": "^2.1.4"
+    }
+}
