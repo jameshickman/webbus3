@@ -20,5 +20,9 @@ module.exports = {
         browser.click('.button_send_second').pause(1);
         browser.assert.textContains('#listener-2 div:nth-of-type(2)', "Bradcast second container.");
         browser.assert.textContains('#listener-3 div:nth-of-type(2)', "Bradcast second container.");
+    },
+    'step five: Responses from handlers': function(browser) {
+        browser.click('.button_get_response').pause(1);
+        browser.assert.textContains('.response', '{"listener-1":"Instance: listener-1","listener-2":"Instance: listener-2","listener-3":"Instance: listener-3"}');
     }
 }
