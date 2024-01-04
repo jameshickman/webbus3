@@ -11,6 +11,8 @@ module.exports = {
         browser.assert.urlContains('#views/view/page3|test/var/1');
         browser.assert.hasClass('#navigation a:nth-of-type(3)', 'navigation__link__current');
         browser.assert.not.hasClass('#navigation a:nth-of-type(1)', 'navigation__link__current');
+    },
+    'step three: Go-back': function(browser) {
         browser.back().pause(1);
         browser.assert.urlContains('#views/view/page1|test/var/1');
         browser.assert.hasClass('#navigation a:nth-of-type(1)', 'navigation__link__current');
