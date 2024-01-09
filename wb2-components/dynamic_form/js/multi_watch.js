@@ -42,7 +42,15 @@ function webbus__form_change_watch(web_bus, name, el, params) {
         }
     }
 
+    function event_form_reloaded() {
+        set_form_state();
+    }
+
     function init() {
+        set_form_state();
+    }
+    
+    function set_form_state() {
         for (var i = 0; i < el_fields.length; i++) {
             var payload = {};
             if (el_fields[i].nodeName === "SELECT") {
