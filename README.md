@@ -124,6 +124,13 @@ class AdapterUser extends ModelAdapter {
         }
     }
 }
+
+
+// Calling the JWT session
+const jwt_session = new AdapterUser();
+jwt_session.call("user_logged_in", "username", "password");
+
+// Implement WebBus handlers for "user_logged_in", "user_authenticated_jwt", and "user_authentication_failed"
 ```
 
 # More information
