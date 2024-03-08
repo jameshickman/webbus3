@@ -76,6 +76,56 @@ The `call()` method calls a function defined in the operations object. Implement
 
 The adapter pattern allows easy implementation of server mock objects using implementations that call back with static test data.
 
+Below is an example of creating an adapter to an authentication JWT system. The endpoints are "/login/" that accepts the username and password. On success the "/whoami/" operation returns the plain-text values from the JWT. This example uses the simpeREST() function in the `restclient.js` utility.
+
+```
+class AdapterUser extends ModelAdapter {
+    operations = {
+        "user_logged_in": (event_name, username, password) => {
+             const get_user_data = (d) => {
+                 if (d.code !== 200) {
+                     this.wb.fire_event("user_authentication_failed", d);
+                     return;
+                 }
+                 localStorage.setItem(d.data.access_token);
+                 this.wb.fire_event("event_user_authenticated_jwt", d.data);
+                 simpleREST(
+                     '/whoami/',
+                     {
+                         'headers': {
+                             'bearer': d.data.access_token
+                         }
+                     },
+                     '',
+                     false,
+                     null,
+                     (d) => {
+                         this.wb.fire_event(event_name, d.data)
+                     },
+                     (e) => {
+                         console.log("Failed to get account information for user: " + e.data);
+                     }
+                 );
+             }
+             simpleREST(
+                 '/login/',
+                 {},
+                 '',
+                 true,
+                 {
+                     'email': username,
+                     'password': password
+                 },
+                 get_user_data,
+                 (e) => {
+                     this.wb.fire_event("user_authentication_failed", e);
+                 }
+             )
+        }
+    }
+}
+```
+
 # More information
 
 See the tests/ and components/ directories for additional examples and complex reusable components.
