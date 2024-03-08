@@ -74,6 +74,8 @@ An abstract class provides an abstract interface to a server API model. Include 
 
 The `call()` method calls a function defined in the operations object. Implementation of operations is in the `this.operations` static object. The properties of the operations contain functions to handle the operation. The first `call()` parameter must be a WebBus event identifier. Pass any other parameters the handler needs to `call()` after the event parameter. The handler is expected to call `this.wb.fire_event()` using the event name passed in with the results of the model operation. If the key `bearer` is set in localStorage, the method `get_bearer()` returns the token for passing on API requests.
 
+The adapter pattern allows easy implementation of server mock objects using implementations that call back with static test data.
+
 ### More information
 
 See the tests/ and components/ directories for additional examples and complex reusable components.
