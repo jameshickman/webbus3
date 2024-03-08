@@ -68,6 +68,12 @@ Each component factory Class implements a _setup() and _start() method. The _set
 
 The _start() event exists for complex setup that should only be performed when the user can see it. This minimizes the time to interactivity of the overall application by deferring the _start() until the instance is actually needed to interact with the user.
 
+# Model Adapter
+
+An abstract class provides an abstract interface to a server API model. Include the file `adapter.js` and extend the class `ModelAdapter`.
+
+The `call()` method calls a function defined in the operations object. Implementation of operations is in the `this. operations` static object. The properties of the operations contain functions to handle the operation. The first `call()` parameter must be a WebBus event identifier. Pass any other parameters the handler needs to call after the event parameter. The handler is expected to call `this.wb.fire_event()` using the event name passed in with the results of the model operation. If the key `bearer` is set in localStorage, the method `get_bearer()` returns the token for passing on API requests.
+
 ### More information
 
 See the tests/ and components/ directories for additional examples and complex reusable components.
