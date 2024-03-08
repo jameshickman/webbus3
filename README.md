@@ -5,7 +5,7 @@ Web Bus v3, pure ES6 version.
 # Simple component system for Single Page Applications
 
 Web Bus provides a minimal message passing, aka. Pub Sub, framework for assembling reusable
-JavScript (ES6) components. This package provides a very minimal set of abilities with a small number of
+JavaScript (ES6) components. This package provides a very minimal set of abilities with a small number of
 essential add-ons.
 
 ## Essential features
