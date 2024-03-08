@@ -87,13 +87,13 @@ class AdapterUser extends ModelAdapter {
                      this.wb.fire_event("user_authentication_failed", d);
                      return;
                  }
-                 localStorage.setItem(d.data.access_token);
+                 localStorage.setItem("bearer", d.data.access_token);
                  this.wb.fire_event("event_user_authenticated_jwt", d.data);
                  simpleREST(
                      '/whoami/',
                      {
                          'headers': {
-                             'bearer': d.data.access_token
+                             'bearer': this.get_bearer()
                          }
                      },
                      '',
