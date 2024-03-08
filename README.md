@@ -2,7 +2,7 @@ Web Bus v3, pure ES6 version.
 
 (C) 2023 James Hickman - LGPL V 2.1
 
-### Simple component system for Single Page Applications
+# Simple component system for Single Page Applications
 
 Web Bus provides a minimal message passing, aka. Pub Sub, framework for assembling reusable
 JavScript (ES6) components. This package provides a very minimal set of abilities with a small number of
@@ -76,7 +76,7 @@ The `call()` method calls a function defined in the operations object. Implement
 
 The adapter pattern allows easy implementation of server mock objects using implementations that call back with static test data.
 
-### More information
+# More information
 
 See the tests/ and components/ directories for additional examples and complex reusable components.
 
