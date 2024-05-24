@@ -5,12 +5,16 @@ function webbus__smart_table_factory(web_bus, name, el, params) {
     let el_edit_form = null;
     const el_table_body = el.querySelector("table tbody");
     const els_table_headers = el.querySelectorAll("table thead tr th");
-
+    let fields = params.fields;
 
     this._setup = function(d) {
         setup();
     };
     this._start = function(d) {};
+
+    this.event_set_table_column_definitions = function(f) {
+        fields = f;
+    }
 
     // Events
     this.event_set_rows = function(rows) {
@@ -26,14 +30,14 @@ function webbus__smart_table_factory(web_bus, name, el, params) {
                 const d_name = els_table_headers[j].dataset['name'];
                 switch(d_type) {
                     case 'select':
-                        el_cell.innerText = params.fields[d_name].options[rows[i][d_name]];
+                        el_cell.innerText = fields[d_name].options[rows[i][d_name]];
                         break;
                     case 'bool':
                         if (rows[i][d_name]) {
-                            el_cell.innerText = params.fields[d_name].labels.true;
+                            el_cell.innerText = fields[d_name].labels.true;
                         }
                         else {
-                            el_cell.innerText = params.fields[d_name].labels.false;
+                            el_cell.innerText = fields[d_name].labels.false;
                         }
                         break;
                     default:
@@ -87,7 +91,7 @@ function webbus__smart_table_factory(web_bus, name, el, params) {
                     values[d_name] = parseFloat(el_row.children[i].innerText);
                     break;
                 case 'bool':
-                    if (el_row.children[i].innerText == params.fields[d_name]['labels']['true']) {
+                    if (el_row.children[i].innerText == fields[d_name]['labels']['true']) {
                         values[d_name] = true;
                     }
                     else {
@@ -98,7 +102,7 @@ function webbus__smart_table_factory(web_bus, name, el, params) {
                     values[d_name] = el_row.children[i].innerText;
                     break;
                 case 'select':
-                    const options = params.fields[d_name].options;
+                    const options = fields[d_name].options;
                     const label = el_row.children[i].innerText;
                     for (let option in options) {
                         if (options[option] == label) {
@@ -156,18 +160,18 @@ function webbus__smart_table_factory(web_bus, name, el, params) {
             case 'bool':
                 el_input = document.createElement('INPUT');
                 el_input.type = "checkbox";
-                if (values[idx] == params['fields'][d_name]['labels']['true']) {
+                if (values[idx] == fields[d_name]['labels']['true']) {
                     el_input.checked = true;
                 }
                 break;
             case 'select':
                 el_input = document.createElement('SELECT');
-                for (let key in params['fields'][d_name]['options']) {
+                for (let key in fields[d_name]['options']) {
                     const el_option = document.createElement('OPTION');
                     el_option.value = key;
-                    el_option.innerText = params['fields'][d_name]['options'][key];
+                    el_option.innerText = fields[d_name]['options'][key];
                     el_input.appendChild(el_option);
-                    if (params['fields'][d_name]['options'][key] == values[idx]) {
+                    if (fields[d_name]['options'][key] == values[idx]) {
                         el_input.value = key;
                     }
                 }
@@ -211,18 +215,18 @@ function webbus__smart_table_factory(web_bus, name, el, params) {
                     break;
                 case 'bool':
                     if (el_edit_form.children[i].querySelector('input').checked) {
-                        el_active_row.children[i].innerText = params.fields[d_name].labels['true'];
+                        el_active_row.children[i].innerText = fields[d_name].labels['true'];
                         payload[d_name] = true;
                     }
                     else {
-                        el_active_row.children[i].innerText = params.fields[d_name].labels['false'];
+                        el_active_row.children[i].innerText = fields[d_name].labels['false'];
                         payload[d_name] = false;
                     }
                     break;
                 case 'select':
                     const select_control = el_edit_form.children[i].querySelector("select");
                     const key = select_control.options[select_control.selectedIndex].value;
-                    const select_val = params.fields[d_name].options[key];
+                    const select_val = fields[d_name].options[key];
                     el_active_row.children[i].innerText = select_val;
                     payload[d_name] = key;
                     break;
@@ -231,14 +235,17 @@ function webbus__smart_table_factory(web_bus, name, el, params) {
                     break;
             }
         }
-        const resp = web_bus.fire_event(params['save_event'], payload);
-        // If an index provided by a listener extract and use that
-        for (let listener in resp) {
-            if (Number.isInteger(resp[listener])) {
-                el_active_row.children[index_column].innerText = parseInt(resp[listern]);
-                break;
+        if (params.hasOwnProperty('save_event')) {
+            const resp = web_bus.fire_event(params['save_event'], payload);
+            // If an index provided by a listener extract and use that
+            for (let listener in resp) {
+                if (Number.isInteger(resp[listener])) {
+                    el_active_row.children[index_column].innerText = parseInt(resp[listern]);
+                    break;
+                }
             }
         }
+        
         clear();
     }
 
@@ -313,10 +320,6 @@ function webbus__smart_table_factory(web_bus, name, el, params) {
         for (let i = 0; i < els_action_buttons.length; i++) {
             els_action_buttons[i].disabled = disable;
         }
-    }
-
-    function delete_row(row_idx) {
-
     }
 
     // UI Event Handlers
