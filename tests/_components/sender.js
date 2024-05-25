@@ -16,11 +16,11 @@ class EventSendController extends ComponentFactory {
 		});
 		
 		this.el.querySelector(".button_send_first").addEventListener("click", (e) => {
-			this.web_bus.fire_event("container-1/test", "Bradcast first container.");
+			this.web_bus.fire_event("#container-1/test", "Bradcast first container.");
 		});
 		
 		this.el.querySelector(".button_send_second").addEventListener("click", (e) => {
-			this.web_bus.fire_event("container-2/test", "Bradcast second container.");
+			this.web_bus.fire_event("#container-2/test", "Bradcast second container.");
 		});
 		this.el.querySelector(".button_get_response").addEventListener("click", (e) => {
 			const reply = this.web_bus.fire_event("respond_with_data");
