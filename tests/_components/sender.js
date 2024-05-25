@@ -1,3 +1,5 @@
+import ComponentFactory from "../../lib/component.js"
+
 class EventSendController extends ComponentFactory {
 	#el_response_container;
 	_setup = () => {
@@ -28,3 +30,5 @@ class EventSendController extends ComponentFactory {
 		});
 	}
 }
+
+export default EventSendController;

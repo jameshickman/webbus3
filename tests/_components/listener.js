@@ -1,3 +1,5 @@
+import ComponentFactory from "../../lib/component.js"
+
 class EventListenerController extends ComponentFactory {
 	_setup = () => {
 		console.log("_setup called on " + this.nme);
@@ -18,3 +20,5 @@ class EventListenerController extends ComponentFactory {
 		return "Instance: " + this.nme;
 	}
 }
+
+export default EventListenerController;

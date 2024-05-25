@@ -1,10 +1,10 @@
 <html>
 <head>
 <title>Event Passing Tests</title>
-<script src="../../lib/webbus-q.js"></script>
-<script src="../../lib/component.js"></script>
-<script src="../_components/sender.js"></script>
-<script src="../_components/listener.js"></script>
+<script src="../../lib/webbus-q.js" type="module"></script>
+<script src="../../lib/component.js" type="module"></script>
+<script src="../_components/sender.js" type="module"></script>
+<script src="../_components/listener.js" type="module"></script>
 <style type="text/css">
 .widget {
 	border: 1px solid red;
@@ -34,18 +34,22 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript" >
-window.addEventListener('load', () => 
-{
-	new WebBus(
+<script type="module">
+	import WebBus from "../../lib/webbus-q.js";
+	import EventSendController from "../_components/sender.js";
+	import EventListenerController from "../_components/listener.js";
+
+	window.addEventListener('load', () => 
 		{
-			"factories": {
-				"test_sender": EventSendController,
-				"test_listener": EventListenerController
-			}
+			new WebBus(
+				{
+					"factories": {
+						"test_sender": EventSendController,
+						"test_listener": EventListenerController
+					}
+				}
+			);
 		}
 	);
-}
-);
 </script>
 </html>
