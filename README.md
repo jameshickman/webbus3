@@ -58,7 +58,7 @@ new WebBus(
 
 Instances communicate via the provided method this.web_bus.fire_event(“target_event”, data_Object)
 
-Any public Controller method with a name starting with “event_” becomes a subscriber to messages sent by fire_event(). Optionally the string for the name of the event can be a path referencing the IDs on the parent DOM containers of a target instance. For example your can fire an event to “test1/test” that will only be received by an instance inside a DOM container with the ID of “test1”.
+Any public Controller method with a name starting with “event_” becomes a subscriber to messages sent by fire_event(). Optionally the string for the name of the event can be prefixed with a DOM query to target only instances on elements that match the query. For example your can fire an event to “#test1/test” that will only be received by an instance inside a DOM container with the ID of “test1” that implements the event names event_test().
 
 The fire_event() method returns an object with properties keyed to the IDs of the listening component instances with the value returned from the handler method.
 
