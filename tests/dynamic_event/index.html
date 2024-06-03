@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Demonstration of dynamically adding an event method</title>
+    </head>
+    <body>
+        <div id="tester" class="webbus_container" data-logic="sender">
+            <button id="test-event-call">Call dynamically defined Event</button>
+            <div id="result"></div>
+        </div>
+        <div id="dynamic-tester" class="webbus_container" data-logic="testing"></div>
+    </body>
+    <script type="module">
+        import WebBus from "../../lib/webbus.js";
+        import DynamicExampleTest from "./js/sender.js";
+        import DynamicExample from "./js/test_event.js";
+
+        window.addEventListener('load', () => {
+            new WebBus(
+                {
+                    'factories': {
+                        'sender': DynamicExampleTest,
+                        'testing': DynamicExample
+                    }
+                }
+            );
+        });
+    </script>
+</html>
