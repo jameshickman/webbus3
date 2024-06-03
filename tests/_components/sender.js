@@ -29,7 +29,7 @@ class EventSendController extends ComponentFactory {
 			this.#el_response_container.innerText = JSON.stringify(reply);
 		});
 		this.el.querySelector(".button_specific_target").addEventListener("click", (e) => {
-			this.web_bus.fire_event("#listener-3/#test", "Bradcast to specific instance.");
+			this.web_bus.fire_event("#listener-3/$test", "Bradcast to specific instance.");
 		});
 	}
 }
