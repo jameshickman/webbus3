@@ -89,8 +89,9 @@
                     </div>
                 </div>
             </div>
-            <div class="_webbus_container" id="clear_form" data-logic="form_reset">
-                <button>Reset form</button>
+            <div>
+                <button id="clear_form">Reset form</button>
+                <button id="get_data">Get form data</button>
             </div>
         </form>
         <script type="module">
@@ -107,9 +108,12 @@
                     }
                 });
                 const form = document.getElementById("main_form");
-                document.querySelector("#clear_form button").addEventListener('click', () => {
+                document.querySelector("#clear_form").addEventListener('click', () => {
                     form.reset();
                     wb.fire_event("form_reset");
+                });
+                document.getElementById("get_data").addEventListener('click', () => {
+                    console.log(wb.fire_event('get_value'));
                 });
             });
         </script>
