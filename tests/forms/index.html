@@ -110,7 +110,7 @@
                 const form = document.getElementById("main_form");
                 document.querySelector("#clear_form").addEventListener('click', () => {
                     form.reset();
-                    wb.fire_event("form_reset");
+                    wb.fire_event("form_updated");
                 });
                 document.getElementById("get_data").addEventListener('click', () => {
                     console.log(wb.fire_event('get_value'));
