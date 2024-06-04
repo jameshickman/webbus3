@@ -1,9 +1,8 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="css/styles.css">
-        <script src="../../lib/webbus.js"></script>
-        <script src="js/multi_watch.js"></script>
-        <script src="js/show_hide.js"></script>
+        <title></title>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <form id="main_form" onsubmit="return false;">
@@ -13,7 +12,7 @@
                  id="select_test_source"
                  data-logic="form_watch"
                  data-params='{
-                                "event": "event_select_selected"
+                                "event": "select_selected"
                               }'
                  >
                 <select name="text_select_1">
@@ -27,7 +26,7 @@
                  id="select_test_target"
                  data-logic="form_show_hide"
                  data-params='{
-                                "event": "event_select_selected",
+                                "event": "select_selected",
                                 "values": ["1", "2"]
                               }'
                 >
@@ -37,7 +36,7 @@
                      id="checkbox_source"
                      data-logic="form_watch"
                      data-params='{
-                        "event": "event_checkbox_checked"
+                        "event": "checkbox_checked"
                      }'
                     >
                     <input type="checkbox" name="cb" id="cb-1" value="0"><label for="cb-1"> First</label><br />
@@ -49,7 +48,7 @@
                      id="first-checkbox-listener"
                      data-logic="form_show_hide"
                      data-params='{
-                                    "event": "event_checkbox_checked",
+                                    "event": "checkbox_checked",
                                     "values": ["1"]
                                   }'
                      >
@@ -60,7 +59,7 @@
                      id="second-checkbox-listener"
                      data-logic="form_show_hide"
                      data-params='{
-                                    "event": "event_checkbox_checked",
+                                    "event": "checkbox_checked",
                                     "values": ["2"]
                                   }'
                      >
@@ -70,7 +69,7 @@
                          id="radio_source"
                          data-logic="form_watch"
                          data-params='{
-                                        "event": "event_radio_selected"
+                                        "event": "radio_selected"
                                       }'
                          >
                         <input type="radio" name="rd" id="rd-0" value="1"><label for="rd-0"> First radio</label><br />
@@ -82,7 +81,7 @@
                          id="third_radio_active"
                          data-logic="form_show_hide"
                          data-params='{
-                                        "event": "event_radio_selected",
+                                        "event": "radio_selected",
                                         "values": ["3"]
                                       }'
                          >
@@ -90,30 +89,28 @@
                     </div>
                 </div>
             </div>
-            <div class="webbus_container" id="clear_form" data-logic="form_reset">
+            <div class="_webbus_container" id="clear_form" data-logic="form_reset">
                 <button>Reset form</button>
             </div>
         </form>
+        <script type="module">
+            import WebBus from "../../lib/webbus.js";
+            import FormElement from "../../lib/widgets/form/form_element.js";
+            import WatchControlElement from "../../lib/widgets/form/watch.js";
+            import ElementsContainer from "../../lib/widgets/form/show_hide.js";
 
-        <script>
-            function form_reset(web_bus, name, el, params) {
-                var form = document.getElementById("main_form");
-                this._setup = function(d) {
-                    el.querySelector("button").addEventListener('click', function(e) {
-                        form.reset();
-                        web_bus.fire_event('event_form_reset', {});
-                        return false;
-                    });
-                };
-                this._start = function(d) {};
-            }
-
-            const wb = new WebBus({
-                'factories': {
-                    'form_reset': form_reset,
-                    'form_watch': webbus__form_change_watch,
-                    'form_show_hide': webbus__form_show_hide_listener
-                }
+            window.addEventListener('load', () => {
+                 const wb = new WebBus({
+                    'factories': {
+                        'form_watch': WatchControlElement,
+                        'form_show_hide': ElementsContainer
+                    }
+                });
+                const form = document.getElementById("main_form");
+                document.querySelector("#clear_form button").addEventListener('click', () => {
+                    form.reset();
+                    wb.fire_event("form_reset");
+                });
             });
         </script>
     </body>

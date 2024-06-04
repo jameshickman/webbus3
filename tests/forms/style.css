@@ -1,0 +1,10 @@
+.webbus__hide-section {
+    display: none;
+}
+
+
+.section {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid green;
+}
