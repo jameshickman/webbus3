@@ -61,6 +61,39 @@
                                   }'
                      >
                     <h2>Second checkbox checked</h2>
+                    <div class="webbus_container" id="text_text_1" data-logic="form_element_enhancer">
+                        <config style="display: none;">
+                            {
+                                "validation": {
+                                    "minimum": {
+                                        "count": 16,
+                                        "message": "Minimum length 16 charactors"
+                                    }
+                                },
+                                "live_validation": true
+                            }
+                        </config>
+                        <div class="validation-message"></div>
+                        <input type="text" name="test_text_line" />
+                    </div>
+                    <div class="webbus_container" id="numeric_range" data-logic="form_element_enhancer">
+                        <config style="display: none;">
+                        {
+                            "validation": {
+                                "range": {
+                                    "upper": 100,
+                                    "lower": 0,
+                                    "message": "You must enter a valid percent between 0 and 100"
+                                }
+                            },
+                            "live_validation": true
+                        }
+                        </config>
+                        <div class="validation-message"></div>
+                        <label>Enter a percentage</label>
+                        <input type="number" name="percentage" />
+                        </config>
+                    </div>
                 </div>
                 <div
                      class="webbus_container section"
@@ -116,6 +149,7 @@
             window.addEventListener('load', () => {
                  const wb = new WebBus({
                     'factories': {
+                        'form_element_enhancer': FormElement,
                         'form_watch': WatchControlElement,
                         'form_show_hide': ElementsContainer
                     }
