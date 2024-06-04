@@ -36,9 +36,17 @@
                      id="checkbox_source"
                      data-logic="form_watch"
                      data-params='{
-                        "event": "checkbox_checked"
+                        "event": "checkbox_checked",
+                        "validation": {
+                            "minimum": {
+                                "count": 2,
+                                "message": "You need to select at least two"
+                            }
+                        },
+                        "live_validation": true
                      }'
                     >
+                    <div class="validation-message"></div>
                     <input type="checkbox" name="cb" id="cb-1" value="0"><label for="cb-1"> First</label><br />
                     <input type="checkbox" name="cb" id="cb-2" value="1"><label for="cb-2"> Second</label><br />
                     <input type="checkbox" name="cb" id="cb-3" value="2"><label for="cb-3"> Third with some radio buttons</label>
@@ -69,9 +77,13 @@
                          id="radio_source"
                          data-logic="form_watch"
                          data-params='{
-                                        "event": "radio_selected"
+                                        "event": "radio_selected",
+                                        "validation": {
+                                            "required": "You must select one"
+                                        }
                                       }'
                          >
+                        <div class="validation-message"></div>
                         <input type="radio" name="rd" id="rd-0" value="1"><label for="rd-0"> First radio</label><br />
                         <input type="radio" name="rd" id="rd-1" value="2"><label for="rd-1"> Second</label><br />
                         <input type="radio" name="rd" id="rd-2" value="3"><label for="rd-2"> Third</label>
@@ -92,6 +104,7 @@
             <div>
                 <button id="clear_form">Reset form</button>
                 <button id="get_data">Get form data</button>
+                <button id="validate_form">Validate the form</button>
             </div>
         </form>
         <script type="module">
@@ -114,6 +127,9 @@
                 });
                 document.getElementById("get_data").addEventListener('click', () => {
                     console.log(wb.fire_event('get_value'));
+                });
+                document.getElementById("validate_form").addEventListener('click', () => {
+                    console.log(wb.fire_event("validate"));
                 });
             });
         </script>
