@@ -3,7 +3,7 @@ html {
 }
 
 .repeater-header {
-    min-height: 64px;
+    min-height: 40px;
     position: relative;
     box-sizing: border-box;
     border-top: 1px solid black;
@@ -20,6 +20,7 @@ html {
 .fields-container {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 52px;
 }
 
 .field-container {
