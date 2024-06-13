@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <html>
+        <form>
+            <div class="webbus_container" id="repeater-test" data-logic="form-repeater">
+                <div class="repeater-container"></div>
+                <button class="add-repeater-button">Add</button>
+                <template>
+                    <div class="repeater-container">
+                        <div class="repeater-header">
+                            <button class="delete-button">X</button>
+                        </div>
+                        <div class="fields-container">
+                            <div class="field-container">
+                                <label>Text test</label>
+                                <input type="text" name="test_text" />
+                            </div>
+                            <div class="field-container">
+                                <label>Number</label>
+                                <input type="number" name="test_number" />
+                            </div>
+                            <div class="field-container">
+                                <label>Select test</label>
+                                <select name="select_test">
+                                    <option value="">Select</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </form>
+        <button id="get-values">Get values</button>
+        <script type="module">
+            import WebBus from "../../lib/webbus.js";
+            import FormRepeater from "../../lib/widgets/form/repeater.js";
+
+            const wb = new WebBus(
+                {
+                    "factories": {
+                        "form-repeater": FormRepeater
+                    }
+                }
+            );
+
+            document.getElementById("get-values").addEventListener("click", (e) => {
+                console.log(wb.fire_event("get_values"));
+            });
+        </script>
+    </html>
+</html>

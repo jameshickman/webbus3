@@ -1,0 +1,28 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.repeater-header {
+    min-height: 64px;
+    position: relative;
+    box-sizing: border-box;
+    border-top: 1px solid black;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+.repeater-header .delete-button {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+}
+
+.fields-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.field-container {
+    width: 48%;
+    padding: 7px;
+}
