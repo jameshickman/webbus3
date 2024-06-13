@@ -26,3 +26,16 @@ html {
     width: 48%;
     padding: 7px;
 }
+
+.field-container label {
+    display: block;
+    width: 100%;
+}
+
+.field-container input[type=text],
+.field-container input[type=number],
+.field-container input[type=date],
+.field-container select {
+    box-sizing: border-box;
+    width: 100%;
+}
