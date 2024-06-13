@@ -45,17 +45,19 @@
             import WebBus from "../../lib/webbus.js";
             import FormRepeater from "../../lib/widgets/form/repeater.js";
 
-            const wb = new WebBus(
-                {
-                    "factories": {
-                        "form-repeater": FormRepeater
+            window.addEventListener('load', () => {
+                const wb = new WebBus(
+                    {
+                        "factories": {
+                            "form-repeater": FormRepeater
+                        }
                     }
-                }
-            );
+                );
 
-            document.getElementById("get-values").addEventListener("click", (e) => {
-                console.log(wb.fire_event("get_values"));
-            });
+                document.getElementById("get-values").addEventListener("click", (e) => {
+                    console.log(wb.fire_event("get_values"));
+                });
+            });            
         </script>
     </html>
 </html>
